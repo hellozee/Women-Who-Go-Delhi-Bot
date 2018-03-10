@@ -1,1 +1,1 @@
-web: WWGDelBot
+worker: WWGDelBot
