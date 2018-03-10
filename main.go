@@ -9,7 +9,7 @@ import (
 
 func main() {
 	b, err := tb.NewBot(tb.Settings{
-		Token:  "339816848:AAE9InShg2uaJ2-BP37u6_hYhrMrJrxTo10",
+		Token:  WWGDel_Token,
 		Poller: &tb.LongPoller{Timeout: 10 * time.Second},
 	})
 
