@@ -32,6 +32,23 @@ func main() {
 		b.Send(m.Chat, "https://www.facebook.com/WomenWhoGoDelhi/")
 	})
 
+	b.Handle("/github", func(m *tb.Message) {
+		b.Send(m.Chat, "https://github.com/wwgdelhi")
+	})
+
+	helpMessage := ` Use one of the following commands
+/twitter - to get Women Who Go Delhi Twitter link
+/facebook - to get a link to Women Who Go Delhi Facebook page
+/github - to get a link to Women Who Go Delhi Github page
+/telegram - to get an invite link for Women Who Go Delhi Telegram Group
+
+To contribute to|modify this bot : https://github.com/hellozee/Women-Who-Go-Delhi-Bot
+	`
+
+	b.Handle("/help", func(m *tb.Message) {
+		b.Send(m.Chat, helpMessage)
+	})
+
 	b.Start()
 
 }
