@@ -1,0 +1,17 @@
+{
+	"ImportPath": "local.proj/WWGDelBot",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "github.com/pkg/errors",
+			"Comment": "v0.8.0-11-g30136e2",
+			"Rev": "30136e27e2ac8d167177e8a583aa4c3fea5be833"
+		},
+		{
+			"ImportPath": "gopkg.in/tucnak/telebot.v2",
+			"Comment": "ver2.0-24-g2414620",
+			"Rev": "24146200389c0856503e7f9a40d21170e55692a2"
+		}
+	]
+}
