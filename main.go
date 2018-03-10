@@ -4,12 +4,13 @@ import (
 	"fmt"
 	tb "gopkg.in/tucnak/telebot.v2"
 	"log"
+	"os"
 	"time"
 )
 
 func main() {
 	b, err := tb.NewBot(tb.Settings{
-		Token:  WWGDel_Token,
+		Token:  os.Getenv("WWGD_KEY"),
 		Poller: &tb.LongPoller{Timeout: 10 * time.Second},
 	})
 
