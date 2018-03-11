@@ -49,6 +49,10 @@ To contribute to|modify this bot : https://github.com/hellozee/Women-Who-Go-Delh
 		b.Send(m.Chat, helpMessage)
 	})
 
+	b.Handle(tb.OnUserJoined, func(m *tb.Message) {
+		b.Send(m.Chat, "Welcome "+m.Sender+", Please introduce yourself. ")
+	})
+
 	b.Start()
 
 }
