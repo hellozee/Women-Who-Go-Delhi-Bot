@@ -1,12 +1,14 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	tb "gopkg.in/tucnak/telebot.v2"
 	"log"
 	"os"
 	"time"
 )
+
+var b tb.Bot
 
 func telegram(m *tb.Message) {
 	b.Send(m.Chat, "https://t.me/womenwhogodelhi")
