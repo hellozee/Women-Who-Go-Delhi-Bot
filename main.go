@@ -3,27 +3,33 @@ package main
 import (
 	//"fmt"
 	tb "gopkg.in/tucnak/telebot.v2"
-	"log"
 	"os"
 	"time"
 )
 
-var b tb.Bot
+var bot *tb.Bot
+
+func init() {
+	bot, _ = tb.NewBot(tb.Settings{
+		Token:  os.Getenv("WWGD_KEY"),
+		Poller: &tb.LongPoller{Timeout: 10 * time.Second},
+	})
+}
 
 func telegram(m *tb.Message) {
-	b.Send(m.Chat, "https://t.me/womenwhogodelhi")
+	bot.Send(m.Chat, "https://t.me/womenwhogodelhi")
 }
 
 func facebook(m *tb.Message) {
-	b.Send(m.Chat, "https://www.facebook.com/WomenWhoGoDelhi/")
+	bot.Send(m.Chat, "https://www.facebook.com/WomenWhoGoDelhi/")
 }
 
 func twitter(m *tb.Message) {
-	b.Send(m.Chat, "https://twitter.com/womenwhogo_del")
+	bot.Send(m.Chat, "https://twitter.com/womenwhogo_del")
 }
 
 func github(m *tb.Message) {
-	b.Send(m.Chat, "https://github.com/wwgdelhi")
+	bot.Send(m.Chat, "https://github.com/wwgdelhi")
 }
 
 func help(m *tb.Message) {
@@ -35,7 +41,7 @@ func help(m *tb.Message) {
 
 To contribute to|modify this bot : https://github.com/hellozee/Women-Who-Go-Delhi-Bot
 `
-	b.Send(m.Chat, helpMessage)
+	bot.Send(m.Chat, helpMessage)
 }
 
 func welcome(m *tb.Message) {
@@ -49,33 +55,23 @@ func welcome(m *tb.Message) {
 
 	message += ", please introduce yourself"
 
-	b.Send(m.Chat, message)
+	bot.Send(m.Chat, message)
 }
 
 func main() {
 
-	b, err := tb.NewBot(tb.Settings{
-		Token:  os.Getenv("WWGD_KEY"),
-		Poller: &tb.LongPoller{Timeout: 10 * time.Second},
-	})
+	bot.Handle("/telegram", telegram)
 
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	bot.Handle("/twitter", twitter)
 
-	b.Handle("/telegram", telegram)
+	bot.Handle("/facebook", facebook)
 
-	b.Handle("/twitter", twitter)
+	bot.Handle("/github", github)
 
-	b.Handle("/facebook", facebook)
+	bot.Handle("/help", help)
 
-	b.Handle("/github", github)
+	bot.Handle(tb.OnUserJoined, welcome)
 
-	b.Handle("/help", help)
-
-	b.Handle(tb.OnUserJoined, welcome)
-
-	b.Start()
+	bot.Start()
 
 }
